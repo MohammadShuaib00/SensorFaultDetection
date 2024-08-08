@@ -1,3 +1,19 @@
-pymongo
-
+pymongo==4.8.0
+numpy==2.0.1
+# sklearn==1.5.1
+xgboost==2.1.1
+dill==0.3.8
+dnspython==2.6.1
+fastapi==0.112.0
+httptools==0.6.1
+imblearn==0.0
+mypy-boto3-s3==1.34.138
+pip-chill==1.0.3
+dotenv-python==0.0.1
+uvicorn==0.30.5
+watchfiles==0.22.0
+websockets==12.0
+wincertstore==0.2.1
+neuro-mf==0.0.5
+PyYAML
 -e .
