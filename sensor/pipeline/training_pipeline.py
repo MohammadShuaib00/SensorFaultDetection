@@ -1,20 +1,3 @@
-from sensor.logger import logging
-from sensor.components.data_ingestion import DataIngestion
-from sensor.entity.config_entity import TrainingPipelineConfig,DataIngestionConfig,DataValidationConfig,DataTransformationConfig,ModelTrainerConfig,ModelEvaluationConfig
-from sensor.entity.artifact_entity import DataIngestionArtifact, DataValidationArtifact,DataTransformationArtifact,ModelTrainerArtifact,ModelPusherArtifact,ModelEvaluationArtifact
-from sensor.entity.config_entity import ModelPusherConfig,ModelEvaluationConfig,ModelTrainerConfig
-from sensor.exception import SensorException
-from sensor.logger import logging
-from sensor.components.data_ingestion import DataIngestion
-from sensor.components.data_validation import DataValidation
-from sensor.components.data_transformation import DataTransformation
-from sensor.components.model_trainer import ModelTrainer
-from sensor.components.model_evaluation import ModelEvaluation
-from sensor.components.model_pusher import ModelPusher
-from sensor.constant.training_pipeline import SAVED_MODEL_DIR,MODEL_FILE_NAME
-from sensor.constant.s3_bucket import TRAINING_BUCKET_NAME
-import sys,os
-
 from sensor.entity.config_entity import TrainingPipelineConfig,DataIngestionConfig,DataValidationConfig,DataTransformationConfig
 from sensor.entity.artifact_entity import DataIngestionArtifact, DataValidationArtifact,DataTransformationArtifact
 from sensor.entity.artifact_entity import ModelEvaluationArtifact,ModelPusherArtifact,ModelTrainerArtifact
@@ -31,6 +14,7 @@ from sensor.components.model_pusher import ModelPusher
 from sensor.cloud_storage.s3_syncer import S3Sync
 from sensor.constant.s3_bucket import TRAINING_BUCKET_NAME
 from sensor.constant.training_pipeline import SAVED_MODEL_DIR
+
 
 
 class TrainPipeline:
@@ -106,7 +90,7 @@ class TrainPipeline:
             raise  SensorException(e,sys)
         
         
-     def sync_artifact_dir_to_s3(self):
+    def sync_artifact_dir_to_s3(self):
         try:
             aws_buket_url = f"s3://{TRAINING_BUCKET_NAME}/artifact/{self.training_pipeline_config.timestamp}"
             self.s3_sync.sync_folder_to_s3(folder = self.training_pipeline_config.artifact_dir,aws_buket_url=aws_buket_url)
